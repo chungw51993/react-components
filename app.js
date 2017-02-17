@@ -3,23 +3,23 @@ class GroceryListItem extends React.Component {
     super(props);
 
     this.state = {
-      done: false
+      bold: false
     };
   }
 
-  onListItemClick() {
+  onListHover() {
     this.setState({
-      done: !this.state.done
+      bold: !this.state.bold
     });
   }
 
   render() {
     var style = {
-      textDecoration: this.state.done ? 'line-through' : 'none'
+      fontWeight: this.state.bold ? 'bold' : 'normal'
     };
 
     return(
-      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.item}</li>
+      <li style={style} onMouseEnter={this.onListHover.bind(this)} onMouseLeave={this.onListHover.bind(this)}>{this.props.item}</li>
     );
   }
 }
@@ -40,4 +40,4 @@ var List = () => (
 );
 
 
-ReactDOM.render(<List />, document.getElementById("app"));
+ReactDOM.render(<List items={["Cucumber", "Kale"]}/>, document.getElementById("app"));
